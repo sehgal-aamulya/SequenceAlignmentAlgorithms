@@ -13,6 +13,7 @@
 
 class EfficientSequenceAlignment {
 	const std::string_view stringOne, stringTwo;
+	const char gapSymbol;
 	const int gapPenalty;
 	const std::array<std::array<int, 4>, 4> &mismatchPenalty;
 	mutable size_t _align;
@@ -23,7 +24,7 @@ class EfficientSequenceAlignment {
 
 	public:
 	EfficientSequenceAlignment(
-		std::string_view stringOne, std::string_view stringTwo,
+		std::string_view stringOne, std::string_view stringTwo, char gapSymbol,
 		int gapPenalty, const std::array<std::array<int, 4>, 4> &mismatchPenalty);
 
 	size_t align() const;

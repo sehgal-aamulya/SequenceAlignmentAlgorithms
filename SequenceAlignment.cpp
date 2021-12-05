@@ -6,9 +6,10 @@
 #include "NucleotideBases.h"
 
 SequenceAlignment::SequenceAlignment(
-	std::string_view stringOne, std::string_view stringTwo,
+	std::string_view stringOne, std::string_view stringTwo, char gapSymbol,
 	int gapPenalty, const std::array<std::array<int, 4>, 4> &mismatchPenalty)
-	: stringOne(stringOne), stringTwo(stringTwo), gapPenalty(gapPenalty), mismatchPenalty(mismatchPenalty),
+	: stringOne(stringOne), stringTwo(stringTwo),
+		gapSymbol(gapSymbol), gapPenalty(gapPenalty), mismatchPenalty(mismatchPenalty),
 		_optimalMatrix(stringOne.size() + 1, std::vector<size_t>(stringTwo.size() + 1)) {}
 
 size_t SequenceAlignment::align() const {
@@ -39,12 +40,12 @@ std::pair<std::string, std::string> SequenceAlignment::sequence() const {
 	while (i > 0 && j > 0) {
 		if (_optimalMatrix[i][j] == gapPenalty + _optimalMatrix[i][j - 1]) {
 			sequenceTwo.insert(0, stringTwo.substr(j - 1, 1));
-			sequenceOne.insert(0, "-");
+			sequenceOne.insert(0, 1, gapSymbol);
 			--j;
 		}
 		else if (_optimalMatrix[i][j] == gapPenalty + _optimalMatrix[i - 1][j]) {
 			sequenceOne.insert(0, stringOne.substr(i - 1, 1));
-			sequenceTwo.insert(0, "-");
+			sequenceTwo.insert(0, 1, gapSymbol);
 			--i;
 		}
 		else {
@@ -56,11 +57,11 @@ std::pair<std::string, std::string> SequenceAlignment::sequence() const {
 	}
 	while (i > 0) {
 		sequenceOne.insert(0, stringOne.substr(i - 1, 1));
-		sequenceTwo.insert(0, "-");
+		sequenceTwo.insert(0, 1, gapSymbol);
 		--i;
 	}
 	while (j > 0) {
-		sequenceOne.insert(0, "-");
+		sequenceOne.insert(0, 1, gapSymbol);
 		sequenceTwo.insert(0, stringTwo.substr(j - 1, 1));
 		--j;
 	}

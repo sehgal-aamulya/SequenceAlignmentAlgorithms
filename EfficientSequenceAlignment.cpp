@@ -7,9 +7,10 @@
 #include "NucleotideBases.h"
 
 EfficientSequenceAlignment::EfficientSequenceAlignment(
-	std::string_view stringOne, std::string_view stringTwo,
+	std::string_view stringOne, std::string_view stringTwo, char gapSymbol,
 	int gapPenalty, const std::array<std::array<int, 4>, 4> &mismatchPenalty)
-	: stringOne(stringOne), stringTwo(stringTwo), gapPenalty(gapPenalty), mismatchPenalty(mismatchPenalty), _align{} {}
+	: stringOne(stringOne), stringTwo(stringTwo), gapSymbol(gapSymbol), gapPenalty(gapPenalty),
+		mismatchPenalty(mismatchPenalty), _align{} {}
 
 std::vector<size_t>
 EfficientSequenceAlignment::iteratorAlign(auto strOneBegin, auto strOneEnd, auto strTwoBegin, auto strTwoEnd) const {
@@ -40,7 +41,7 @@ EfficientSequenceAlignment::iteratorAlign(auto strOneBegin, auto strOneEnd, auto
 std::pair<std::string, std::string>
 EfficientSequenceAlignment::sequence(const std::string_view strOne, const std::string_view strTwo) const {
 	if (strOne.size() <= 2 || strTwo.size() <= 2) {
-		SequenceAlignment sequenceAlignment(strOne, strTwo, gapPenalty, mismatchPenalty);
+		SequenceAlignment sequenceAlignment(strOne, strTwo, gapSymbol, gapPenalty, mismatchPenalty);
 		return sequenceAlignment.sequence();
 	}
 
@@ -84,7 +85,7 @@ size_t EfficientSequenceAlignment::align() const {
 	if (sequenceOne.empty()) sequence();
 	if (!_align) {
 		for (size_t i = 0; i < sequenceOne.size(); ++i) {
-			if (sequenceOne[i] == '-' || sequenceTwo[i] == '-')
+			if (sequenceOne[i] == gapSymbol || sequenceTwo[i] == gapSymbol)
 				_align += gapPenalty;
 			else
 				_align += mismatchPenalty[fromCharacter(sequenceOne[i])][fromCharacter((sequenceTwo[i]))];

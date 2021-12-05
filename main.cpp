@@ -1,31 +1,18 @@
 #include <iostream>
 #include <array>
 #include <fstream>
-#include <span>
-#include <boost/algorithm/string.hpp>
 #include <sys/resource.h>
 #include "SequenceAlignment.h"
 #include "EfficientSequenceAlignment.h"
-
-std::pair<std::string, std::string> inputStringGenerator(
-	std::string_view strOne, std::string_view strTwo, std::span<size_t> j, std::span<size_t> k) {
-	std::string resultOne{strOne}, resultTwo{strTwo};
-	for (size_t i: j) {
-		std::string tempStrOne{resultOne};
-		resultOne.insert(i + 1, tempStrOne);
-	}
-	for (size_t i: k) {
-		std::string tempStrTwo{resultTwo};
-		resultTwo.insert(i + 1, tempStrTwo);
-	}
-	return {resultOne, resultTwo};
-}
+#include "StringGenerator.h"
+#include "StringTrim.h"
 
 int main(int argc, char *argv[]) {
-	if (!argc) {
+	if (argc < 2) {
 		std::cout << "Please include an input file name (./main input.txt)" << std::endl;
 		std::cout << "You can also include an output file name (defaults to output.txt) "
 								 "(./main input.txt output.txt)" << std::endl;
+		return EXIT_FAILURE;
 	}
 
 	const std::array<std::array<int, 4>, 4> mismatchPenalty = {
@@ -37,6 +24,8 @@ int main(int argc, char *argv[]) {
 
 	const int gapPenalty = 30;
 
+	const char gapSymbol = '_';
+
 	const std::string_view inputFileName{argv[1]};
 	const std::string_view outputFileName{(argc >= 3) ? argv[2] : "output.txt"};
 
@@ -45,14 +34,16 @@ int main(int argc, char *argv[]) {
 	std::vector<size_t> j;
 	std::vector<size_t> k;
 	std::getline(fin, strOne);
-	boost::trim(strOne);
+//	boost::trim(strOne);
+	trim(strOne);
 	size_t value;
 	while (fin >> value) {
 		j.push_back(value);
 	}
 	fin.clear();
 	std::getline(fin, strTwo);
-	boost::trim(strTwo);
+//	boost::trim(strTwo);
+	trim(strTwo);
 	while (fin >> value) {
 		k.push_back(value);
 	}
@@ -80,7 +71,7 @@ int main(int argc, char *argv[]) {
 	startReturn = getrusage(RUSAGE_SELF, &start);
 	if (startReturn) return startReturn;
 
-	const SequenceAlignment sequenceAlignment(stringOne, stringTwo, gapPenalty, mismatchPenalty);
+	const SequenceAlignment sequenceAlignment(stringOne, stringTwo, gapSymbol, gapPenalty, mismatchPenalty);
 	alignmentCost = sequenceAlignment.align();
 	std::tie(sequenceOne, sequenceTwo) = sequenceAlignment.sequence();
 
@@ -122,7 +113,8 @@ int main(int argc, char *argv[]) {
 	startReturn = getrusage(RUSAGE_SELF, &start);
 	if (startReturn) return startReturn;
 
-	const EfficientSequenceAlignment efficientSequenceAlignment(stringOne, stringTwo, gapPenalty, mismatchPenalty);
+	const EfficientSequenceAlignment
+		efficientSequenceAlignment(stringOne, stringTwo, gapSymbol, gapPenalty, mismatchPenalty);
 	std::tie(sequenceOne, sequenceTwo) = efficientSequenceAlignment.sequence();
 	alignmentCost = efficientSequenceAlignment.align();
 
