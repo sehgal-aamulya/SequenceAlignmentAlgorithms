@@ -6,13 +6,13 @@
 #include <iostream>
 #include <fstream>
 #include <sys/resource.h>
-#include "SequenceAlignment.h"
+#include "SequenceAlignment.hpp"
 
 int main(int argc, char *argv[]) {
 	if (argc < 3) {
-		std::cout << "Please include an input strings (./7952603892_basic.out <string1> <string2>)" << std::endl;
+		std::cout << "Please include an input strings (./BasicCSV <string1> <string2>)" << std::endl;
 		std::cout << "You can also include an output file name (defaults to output.txt) "
-								 "(./7952603892_basic.out <string1> <string2> output.txt)" << std::endl;
+								 "(./BasicCSV <string1> <string2> output.txt)" << std::endl;
 		return EXIT_FAILURE;
 	}
 

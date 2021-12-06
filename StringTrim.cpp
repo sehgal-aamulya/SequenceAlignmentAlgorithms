@@ -2,7 +2,7 @@
 // Created by Aamulya Sehgal on 12/4/21.
 //
 
-#include "StringTrim.h"
+#include "StringTrim.hpp"
 
 bool isSpace(char ch) {
 	return std::use_facet<std::ctype<char>>(std::locale()).is(std::ctype_base::space, ch);

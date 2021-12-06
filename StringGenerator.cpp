@@ -2,7 +2,7 @@
 // Created by Aamulya Sehgal on 12/4/21.
 //
 
-#include "StringGenerator.h"
+#include "StringGenerator.hpp"
 
 std::pair<std::string, std::string> inputStringGenerator(std::string_view strOne, std::string_view strTwo,
 																												 std::span<size_t> j, std::span<size_t> k) {

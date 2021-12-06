@@ -2,7 +2,7 @@
 // Created by Aamulya Sehgal on 11/17/21.
 //
 
-#include "NucleotideBases.h"
+#include "NucleotideBases.hpp"
 
 NucleotideBases fromCharacter(char alphabet) {
 	switch (alphabet) {

@@ -2,8 +2,8 @@
 // Created by Aamulya Sehgal on 11/16/21.
 //
 
-#ifndef CSCI570FINALPROJECT_SEQUENCEALIGNMENT_H
-#define CSCI570FINALPROJECT_SEQUENCEALIGNMENT_H
+#ifndef CSCI570FINALPROJECT_SEQUENCEALIGNMENT_HPP
+#define CSCI570FINALPROJECT_SEQUENCEALIGNMENT_HPP
 
 #include <string_view>
 #include <vector>
@@ -34,4 +34,4 @@ void printOptimalMatrix(std::string_view stringOne, std::string_view stringTwo,
 
 void printMismatchPenalty(const std::array<std::array<int, 4>, 4> &mismatchPenalty);
 
-#endif //CSCI570FINALPROJECT_SEQUENCEALIGNMENT_H
+#endif //CSCI570FINALPROJECT_SEQUENCEALIGNMENT_HPP

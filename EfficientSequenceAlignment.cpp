@@ -2,9 +2,9 @@
 // Created by Aamulya Sehgal on 11/17/21.
 //
 
-#include "EfficientSequenceAlignment.h"
-#include "SequenceAlignment.h"
-#include "NucleotideBases.h"
+#include "EfficientSequenceAlignment.hpp"
+#include "SequenceAlignment.hpp"
+#include "NucleotideBases.hpp"
 
 EfficientSequenceAlignment::EfficientSequenceAlignment(
 	std::string_view stringOne, std::string_view stringTwo, char gapSymbol,

@@ -2,8 +2,8 @@
 // Created by Aamulya Sehgal on 11/16/21.
 //
 
-#include "SequenceAlignment.h"
-#include "NucleotideBases.h"
+#include "SequenceAlignment.hpp"
+#include "NucleotideBases.hpp"
 
 SequenceAlignment::SequenceAlignment(
 	std::string_view stringOne, std::string_view stringTwo, char gapSymbol,

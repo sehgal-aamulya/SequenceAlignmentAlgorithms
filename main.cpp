@@ -2,16 +2,16 @@
 #include <array>
 #include <fstream>
 #include <sys/resource.h>
-#include "SequenceAlignment.h"
-#include "EfficientSequenceAlignment.h"
-#include "StringGenerator.h"
-#include "StringTrim.h"
+#include "SequenceAlignment.hpp"
+#include "EfficientSequenceAlignment.hpp"
+#include "StringGenerator.hpp"
+#include "StringTrim.hpp"
 
 int main(int argc, char *argv[]) {
 	if (argc < 2) {
-		std::cout << "Please include an input file name (./main input.txt)" << std::endl;
+		std::cout << "Please include an input file name (./CSCI570FinalProject input.txt)" << std::endl;
 		std::cout << "You can also include an output file name (defaults to output.txt) "
-								 "(./main input.txt output.txt)" << std::endl;
+								 "(./CSCI570FinalProject input.txt output.txt)" << std::endl;
 		return EXIT_FAILURE;
 	}
 

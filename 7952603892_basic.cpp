@@ -6,9 +6,9 @@
 #include <iostream>
 #include <fstream>
 #include <sys/resource.h>
-#include "SequenceAlignment.h"
-#include "StringGenerator.h"
-#include "StringTrim.h"
+#include "SequenceAlignment.hpp"
+#include "StringGenerator.hpp"
+#include "StringTrim.hpp"
 
 int main(int argc, char *argv[]) {
 	if (argc < 2) {
