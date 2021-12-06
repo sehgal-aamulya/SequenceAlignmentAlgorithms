@@ -9,8 +9,8 @@
 #include <iostream>
 #include <fstream>
 
-int main() {
-	const std::string_view fileName = "plotdata.csv";
+int main(int argc, char *argv[]) {
+	const std::string_view fileName{(argc >= 2) ? argv[1] : "plotdata.csv"};
 
 	std::ofstream fout{fileName.data()};
 
