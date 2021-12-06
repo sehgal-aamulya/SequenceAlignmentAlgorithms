@@ -1,8 +1,8 @@
-Sequence Alignment Problem
+    Sequence Alignment Problem
 
 
 Sequence Alignment Problem deals with the fundamental problem of quantifying the similarities between strings.
-We model the similarity of two strings by determing the number of gaps and mismatches we incur when we line up the strings.
+We model the similarity of two strings by determining the number of gaps and mismatches we incur when we line up the strings.
 The objective is to find the minimum "cost" alignment of two strings to quantify their similarity (or dissimilarity).
 
 Finding efficient solution to this problem becomes increasing important as we deal with extremely large strings,
@@ -12,7 +12,7 @@ such as DNA and/or chromosome strings. Even though they have small alphabets (A,
 Hence, solution to these problems have wide-ranging uses from use in spell checkers to computational biology.
 
 
-Two Algorithms (Description, Time Complexity, Implementation)
+    Two Algorithms (Description, Time Complexity, Implementation)
 
 
 The first algorithm that has been used, termed as the basic algorithm, is a dynamic programming based.
@@ -43,24 +43,17 @@ call to the next.
 
 This yields a space complexity of O(m + n).
 
-The algorithm involves multiples iteration of the space efficient dynamic programming solution, however is bounded to
-at most 2cmn call where c is a constant. Hence, the time complexity is O(mn).
+The algorithm involves multiples iteration of the space efficient dynamic programming solution.
+    cmn + cmn/2 + cmn/4 + ... = 2cmn
+Therefore, the solution is bounded to at most 2cmn call where c is a constant.
+
+Hence, the time complexity is O(mn).
 
 If we consider two 3 billion length strings, the space required by the basic algorithm would be 3B * 3B integers.
 The space required by the efficient algorithm would be 3B integers.
 
 That is a huge savings in space with at most 2x runtime cost.
 
-
-Observation of certain data sets
-
-
 On average, the efficient version has runtime is 1.1x slower than the basic version, but uses 22x less space than
 the basic version (excluding certain datasets which use not all alphabets).
-
 The trend of the 2x runtime and large space savings can be seen in increasing string lengths with ACGT characters.
-However, if the characters are restricted to just two in each string or 2 across both the strings with large string
-size, the efficient algorithms seems to perform close to or better than the basic algorithm.
-
-This was seen with high code optimization set on the compiler and not otherwise.
-Further analysis is needed to understand why.
