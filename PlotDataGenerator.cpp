@@ -28,11 +28,14 @@ int main(int argc, char *argv[]) {
 
 	fout << "type,problemsize,cputime,memoryusage" << std::flush;
 
-	std::string basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	const std::string basic = "./BasicCSV";
+	const std::string efficient = "./EfficientCSV";
 
-	std::string efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	std::string cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
+
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	for (int generations = 1; generations <= 8; ++generations) {
 		std::shuffle(strOne.begin(), strOne.end(), g);
@@ -49,11 +52,11 @@ int main(int argc, char *argv[]) {
 			stringTwo.insert(pos, stringTwo);
 		}
 
-		basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-		system(basic.c_str());
+		cmd = " ";
+		cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-		efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-		system(efficient.c_str());
+		system((basic + cmd).c_str());
+		system((efficient + cmd).c_str());
 	}
 
 	std::shuffle(strOne.begin(), strOne.end(), g);
@@ -72,11 +75,11 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	std::shuffle(strOne.begin(), strOne.end(), g);
 	std::shuffle(strTwo.begin(), strTwo.end(), g);
@@ -95,29 +98,29 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	stringOne = "ACACACTGACTACTGACTGGTGACTACTGACTGGACTGACTACTGACTGGTGACTACTGACTGG";
 	stringTwo = "TATTATTATACGCTATTATACGCGACGCGGACGCGTATACGCTATTATACGCGACGCGGACGCG";
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	stringOne = "ACACACTGACTACTGACTGGTGACTACTGACTGGACTGACTACTGACTGGTGACTACTGACTGG";
 	stringTwo = "TTATTATACGCGACGCGATTATACGCGACGCG";
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	strOne = "ACCA";
 	strTwo = "GTTG";
@@ -136,11 +139,11 @@ int main(int argc, char *argv[]) {
 		stringTwo.insert(pos, stringTwo);
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	strOne = "AGGA";
 	strTwo = "CTTC";
@@ -159,11 +162,11 @@ int main(int argc, char *argv[]) {
 		stringTwo.insert(pos, stringTwo);
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	strOne = "ATTA";
 	strTwo = "GCCG";
@@ -182,11 +185,11 @@ int main(int argc, char *argv[]) {
 		stringTwo.insert(pos, stringTwo);
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	strOne = "ACCA";
 	strTwo = "GTTG";
@@ -205,11 +208,11 @@ int main(int argc, char *argv[]) {
 		stringTwo.insert(pos, stringTwo);
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	strOne = "AGGA";
 	strTwo = "CTTC";
@@ -228,11 +231,11 @@ int main(int argc, char *argv[]) {
 		stringTwo.insert(pos, stringTwo);
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	strOne = "AAAA";
 	strTwo = "GGGG";
@@ -248,11 +251,11 @@ int main(int argc, char *argv[]) {
 		stringTwo.insert(pos, stringTwo);
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	strOne = "CCCC";
 	strTwo = "TTTT";
@@ -268,11 +271,11 @@ int main(int argc, char *argv[]) {
 		stringTwo.insert(pos, stringTwo);
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	strOne = "AAAA";
 	strTwo = "TTTT";
@@ -288,11 +291,11 @@ int main(int argc, char *argv[]) {
 		stringTwo.insert(pos, stringTwo);
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	strOne = "CCCC";
 	strTwo = "GGGG";
@@ -308,11 +311,11 @@ int main(int argc, char *argv[]) {
 		stringTwo.insert(pos, stringTwo);
 	}
 
-	basic = "./BasicCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(basic.c_str());
+	cmd = " ";
+	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
 
-	efficient = "./EfficientCSV " + stringOne + " " + stringTwo + " " + fileName.data();
-	system(efficient.c_str());
+	system((basic + cmd).c_str());
+	system((efficient + cmd).c_str());
 
 	return 0;
 }

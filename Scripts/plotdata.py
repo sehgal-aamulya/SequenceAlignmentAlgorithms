@@ -1,9 +1,10 @@
 import csv
 import functools
 import math
-import matplotlib.pyplot as plt
 import operator
 import sys
+
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     file_name = sys.argv[1]
@@ -58,11 +59,11 @@ if __name__ == "__main__":
     axs[1].set_xlabel("Problem Size")
     axs[1].set_ylabel("Memory Usage (in kilobytes)")
 
-    fig.savefig("allplots.png")
+    fig.savefig("AllPlots.png")
 
-    fig.savefig("cputimeplot.png",
+    fig.savefig("CPUPlot.png",
                 bbox_inches=axs[0].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).expanded(1.2, 1.3))
-    fig.savefig("memoryusageplot.png",
+    fig.savefig("MemoryPlot.png",
                 bbox_inches=axs[1].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).expanded(1.3, 1.3))
 
     plt.show()
