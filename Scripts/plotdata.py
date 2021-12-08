@@ -40,7 +40,9 @@ if __name__ == "__main__":
 
     print(f"Efficient Algorithm is {math.ceil(average_efficient_ct / average_basic_ct)}x slower than Basic Algorithm")
     print(
-        f"Efficient Algorithm takes {math.ceil(average_basic_mu / average_efficient_mu)}x less memory than Basic Algorithm")
+        f"Efficient Algorithm takes {math.ceil(average_basic_mu / average_efficient_mu)}x less memory than Basic "
+        f"Algorithm"
+    )
 
     fig, axs = plt.subplots(2, figsize=(14, 10))
     fig.suptitle("Sequence Alignment")
