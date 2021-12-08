@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
 
 	std::cout << std::endl;
 
-	std::cout << "Problem Size (product of string sizes): " << stringOne.size() * stringTwo.size() << std::endl;
+	std::cout << "Problem Size (sum of string sizes): " << stringOne.size() + stringTwo.size() << std::endl;
 
 	std::cout << std::endl;
 

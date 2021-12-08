@@ -57,11 +57,11 @@ int main(int argc, char *argv[]) {
 		diffMemory = end.ru_maxrss;
 	}
 
-	std::cout << std::endl << "Efficient," << stringOne.size() * stringTwo.size() << "," << std::fixed << diffTime << ","
+	std::cout << std::endl << "Efficient," << stringOne.size() + stringTwo.size() << "," << std::fixed << diffTime << ","
 						<< diffMemory;
 	std::cout << std::endl << "Alignment Cost: " << alignmentCost << std::endl;
 	std::cout << "Sequence:\n" << sequenceOne << std::endl << sequenceTwo << std::endl;
-	fout << std::endl << "Efficient," << stringOne.size() * stringTwo.size() << "," << std::fixed << diffTime << ","
+	fout << std::endl << "Efficient," << stringOne.size() + stringTwo.size() << "," << std::fixed << diffTime << ","
 			 << diffMemory;
 
 	return 0;
