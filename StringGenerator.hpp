@@ -6,9 +6,9 @@
 #define CSCI570FINALPROJECT_STRINGGENERATOR_HPP
 
 #include <string>
-#include <span>
+#include <vector>
 
-std::pair<std::string, std::string> inputStringGenerator(
-	std::string_view strOne, std::string_view strTwo, std::span<size_t> j, std::span<size_t> k);
+std::pair<std::string, std::string> inputStringGenerator(std::string_view strOne, std::string_view strTwo,
+																												 const std::vector<size_t> &j, const std::vector<size_t> &k);
 
 #endif //CSCI570FINALPROJECT_STRINGGENERATOR_HPP

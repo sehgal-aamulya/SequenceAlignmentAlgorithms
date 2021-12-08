@@ -7,7 +7,7 @@
 
 #include <string_view>
 #include <vector>
-#include <span>
+#include <array>
 #include <iostream>
 #include <iomanip>
 #include <string>

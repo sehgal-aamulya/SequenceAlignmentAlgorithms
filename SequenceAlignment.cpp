@@ -94,7 +94,7 @@ void printOptimalMatrix(std::string_view stringOne, std::string_view stringTwo,
 }
 
 void printMismatchPenalty(const std::array<std::array<int, 4>, 4> &mismatchPenalty) {
-	std::string alphabets = "ACGT";
+	const std::string_view alphabets{"ACGT"};
 	std::cout << " ";
 	for (const char &ch: alphabets) {
 		std::cout << "   " << ch;

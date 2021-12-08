@@ -12,8 +12,9 @@ EfficientSequenceAlignment::EfficientSequenceAlignment(
 	: stringOne(stringOne), stringTwo(stringTwo), gapSymbol(gapSymbol), gapPenalty(gapPenalty),
 		mismatchPenalty(mismatchPenalty), _align{} {}
 
+template<typename T>
 std::vector<size_t>
-EfficientSequenceAlignment::iteratorAlign(auto strOneBegin, auto strOneEnd, auto strTwoBegin, auto strTwoEnd) const {
+EfficientSequenceAlignment::iteratorAlign(T strOneBegin, T strOneEnd, T strTwoBegin, T strTwoEnd) const {
 	const auto strTwoSize = strTwoEnd - strTwoBegin;
 
 	std::array<std::vector<size_t>, 2> optimalMatrix{std::vector<size_t>(strTwoSize + 1),
@@ -39,7 +40,7 @@ EfficientSequenceAlignment::iteratorAlign(auto strOneBegin, auto strOneEnd, auto
 }
 
 std::pair<std::string, std::string>
-EfficientSequenceAlignment::sequence(const std::string_view strOne, const std::string_view strTwo) const {
+EfficientSequenceAlignment::sequence(std::string_view strOne, std::string_view strTwo) const {
 	if (strOne.size() <= 2 || strTwo.size() <= 2) {
 		SequenceAlignment sequenceAlignment(strOne, strTwo, gapSymbol, gapPenalty, mismatchPenalty);
 		return sequenceAlignment.sequence();
@@ -57,8 +58,9 @@ EfficientSequenceAlignment::sequence(const std::string_view strOne, const std::s
 	auto rightIt = right.crbegin();
 	size_t minValue = SIZE_MAX, minIndex = SIZE_MAX;
 	for (size_t i = 0; i < left.size(); ++i) {
-		if (minValue > (*leftIt + *rightIt)) {
-			minValue = (*leftIt + *rightIt);
+		const size_t value = *leftIt + *rightIt;
+		if (minValue > value) {
+			minValue = value;
 			minIndex = i;
 		}
 		++leftIt;
@@ -75,9 +77,7 @@ EfficientSequenceAlignment::sequence(const std::string_view strOne, const std::s
 }
 
 std::pair<std::string, std::string> EfficientSequenceAlignment::sequence() const {
-	if (sequenceOne.empty()) {
-		std::tie(sequenceOne, sequenceTwo) = sequence(stringOne, stringTwo);
-	}
+	if (sequenceOne.empty()) std::tie(sequenceOne, sequenceTwo) = sequence(stringOne, stringTwo);
 	return {sequenceOne, sequenceTwo};
 }
 
@@ -85,10 +85,8 @@ size_t EfficientSequenceAlignment::align() const {
 	if (sequenceOne.empty()) sequence();
 	if (!_align) {
 		for (size_t i = 0; i < sequenceOne.size(); ++i) {
-			if (sequenceOne[i] == gapSymbol || sequenceTwo[i] == gapSymbol)
-				_align += gapPenalty;
-			else
-				_align += mismatchPenalty[fromCharacter(sequenceOne[i])][fromCharacter((sequenceTwo[i]))];
+			if (sequenceOne[i] == gapSymbol || sequenceTwo[i] == gapSymbol) _align += gapPenalty;
+			else _align += mismatchPenalty[fromCharacter(sequenceOne[i])][fromCharacter((sequenceTwo[i]))];
 		}
 	}
 	return _align;

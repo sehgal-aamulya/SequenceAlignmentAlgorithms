@@ -19,13 +19,13 @@ class EfficientSequenceAlignment {
 	mutable size_t _align;
 	mutable std::string sequenceOne, sequenceTwo;
 
-	std::vector<size_t> iteratorAlign(auto strOneBegin, auto strOneEnd, auto strTwoBegin, auto strTwoEnd) const;
+	template<typename T>
+	std::vector<size_t> iteratorAlign(T strOneBegin, T strOneEnd, T strTwoBegin, T strTwoEnd) const;
 	std::pair<std::string, std::string> sequence(std::string_view strOne, std::string_view strTwo) const;
 
 	public:
-	EfficientSequenceAlignment(
-		std::string_view stringOne, std::string_view stringTwo, char gapSymbol,
-		int gapPenalty, const std::array<std::array<int, 4>, 4> &mismatchPenalty);
+	EfficientSequenceAlignment(std::string_view stringOne, std::string_view stringTwo, char gapSymbol,
+														 int gapPenalty, const std::array<std::array<int, 4>, 4> &mismatchPenalty);
 
 	size_t align() const;
 	std::pair<std::string, std::string> sequence() const;

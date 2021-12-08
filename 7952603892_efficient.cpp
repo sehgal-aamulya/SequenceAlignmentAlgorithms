@@ -36,38 +36,30 @@ int main(int argc, char *argv[]) {
 	std::string strOne, strTwo;
 	std::vector<size_t> j;
 	std::vector<size_t> k;
+
 	std::getline(fin, strOne);
-//	boost::trim(strOne);
 	trim(strOne);
+
 	size_t value;
 	while (fin >> value) {
 		j.push_back(value);
 	}
 	fin.clear();
+
 	std::getline(fin, strTwo);
-//	boost::trim(strTwo);
 	trim(strTwo);
+
 	while (fin >> value) {
 		k.push_back(value);
 	}
 
 	const auto[stringOne, stringTwo] = inputStringGenerator(strOne, strTwo, j, k);
 
-	std::cout << "StringOne: " << stringOne << std::endl;
-	std::cout << "StringTwo: " << stringTwo << std::endl;
-
-	std::cout << std::endl;
-
-	std::cout << "Problem Size (sum of string sizes): " << stringOne.size() + stringTwo.size() << std::endl;
-
-	std::cout << std::endl;
-
 	std::ofstream fout{outputFileName.data()};
 
 	rusage start, end;
-	int startReturn, endReturn;
 
-	startReturn = getrusage(RUSAGE_SELF, &start);
+	const int startReturn = getrusage(RUSAGE_SELF, &start);
 	if (startReturn) return startReturn;
 
 	const EfficientSequenceAlignment
@@ -75,7 +67,7 @@ int main(int argc, char *argv[]) {
 	const auto[sequenceOne, sequenceTwo] = efficientSequenceAlignment.sequence();
 	const size_t alignmentCost = efficientSequenceAlignment.align();
 
-	endReturn = getrusage(RUSAGE_SELF, &end);
+	const int endReturn = getrusage(RUSAGE_SELF, &end);
 	if (endReturn) return endReturn;
 
 	const double diffTime = (end.ru_utime.tv_sec * 1000000.0 + end.ru_utime.tv_usec +
@@ -84,11 +76,11 @@ int main(int argc, char *argv[]) {
 		start.ru_stime.tv_sec * 1000000.0 - start.ru_stime.tv_usec) /
 		1000000.0;
 
-	double diffMemory = end.ru_maxrss - start.ru_maxrss;
+	double diffMemory = end.ru_maxrss;
 
-	if (diffMemory == 0.0) {
-		diffMemory = end.ru_maxrss;
-	}
+	#ifdef __APPLE__
+	diffMemory /= 1024.0;
+	#endif
 
 	std::cout << "Efficient Version:" << std::endl;
 
@@ -97,7 +89,7 @@ int main(int argc, char *argv[]) {
 
 	std::cout << std::endl;
 
-	std::cout << "Problem Size (product of string sizes): " << stringOne.size() * stringTwo.size() << std::endl;
+	std::cout << "Problem Size (sum of string sizes): " << stringOne.size() + stringTwo.size() << std::endl;
 
 	std::cout << std::endl;
 

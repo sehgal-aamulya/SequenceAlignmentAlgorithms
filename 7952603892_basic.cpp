@@ -36,15 +36,19 @@ int main(int argc, char *argv[]) {
 	std::string strOne, strTwo;
 	std::vector<size_t> j;
 	std::vector<size_t> k;
+
 	std::getline(fin, strOne);
 	trim(strOne);
+
 	size_t value;
 	while (fin >> value) {
 		j.push_back(value);
 	}
 	fin.clear();
+
 	std::getline(fin, strTwo);
 	trim(strTwo);
+
 	while (fin >> value) {
 		k.push_back(value);
 	}
@@ -54,29 +58,28 @@ int main(int argc, char *argv[]) {
 	std::ofstream fout{outputFileName.data()};
 
 	rusage start, end;
-	int startReturn, endReturn;
 
-	startReturn = getrusage(RUSAGE_SELF, &start);
+	const int startReturn = getrusage(RUSAGE_SELF, &start);
 	if (startReturn) return startReturn;
 
 	const SequenceAlignment sequenceAlignment(stringOne, stringTwo, gapSymbol, gapPenalty, mismatchPenalty);
 	const size_t alignmentCost = sequenceAlignment.align();
 	const auto[sequenceOne, sequenceTwo] = sequenceAlignment.sequence();
 
-	endReturn = getrusage(RUSAGE_SELF, &end);
+	const int endReturn = getrusage(RUSAGE_SELF, &end);
 	if (endReturn) return endReturn;
 
-	double diffTime = (end.ru_utime.tv_sec * 1000000.0 + end.ru_utime.tv_usec +
+	const double diffTime = (end.ru_utime.tv_sec * 1000000.0 + end.ru_utime.tv_usec +
 		end.ru_stime.tv_sec * 1000000.0 + end.ru_stime.tv_usec -
 		start.ru_utime.tv_sec * 1000000.0 - start.ru_utime.tv_usec -
 		start.ru_stime.tv_sec * 1000000.0 - start.ru_stime.tv_usec) /
 		1000000.0;
 
-	double diffMemory = end.ru_maxrss - start.ru_maxrss;
+	double diffMemory = end.ru_maxrss;
 
-	if (diffMemory == 0.0) {
-		diffMemory = end.ru_maxrss;
-	}
+	#ifdef __APPLE__
+	diffMemory /= 1024.0;
+	#endif
 
 	std::cout << "Basic Version:" << std::endl;
 
