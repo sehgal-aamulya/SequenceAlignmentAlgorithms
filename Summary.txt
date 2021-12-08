@@ -54,6 +54,6 @@ The space required by the efficient algorithm would be 3B integers.
 
 That is a huge savings in space with at most 2x runtime cost.
 
-On average, the efficient version has runtime is 1.1x slower than the basic version, but uses 22x less space than
+On average, the efficient version has runtime is 2x slower than the basic version, but uses 7x less space than
 the basic version (excluding certain datasets which use not all alphabets).
 The trend of the 2x runtime and large space savings can be seen in increasing string lengths with ACGT characters.
