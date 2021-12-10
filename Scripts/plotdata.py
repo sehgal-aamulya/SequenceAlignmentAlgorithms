@@ -1,6 +1,5 @@
 import csv
 import functools
-import math
 import operator
 import sys
 
@@ -38,9 +37,9 @@ if __name__ == "__main__":
     average_basic_mu = functools.reduce(operator.add, basic_mu) / len(basic_mu)
     average_efficient_mu = functools.reduce(operator.add, efficient_mu) / len(efficient_mu)
 
-    print(f"Efficient Algorithm is {math.ceil(average_efficient_ct / average_basic_ct)}x slower than Basic Algorithm")
+    print(f"Efficient Algorithm is {average_efficient_ct / average_basic_ct}x slower than Basic Algorithm")
     print(
-        f"Efficient Algorithm takes {math.ceil(average_basic_mu / average_efficient_mu)}x less memory than Basic "
+        f"Efficient Algorithm takes {average_basic_mu / average_efficient_mu}x less memory than Basic "
         f"Algorithm"
     )
 

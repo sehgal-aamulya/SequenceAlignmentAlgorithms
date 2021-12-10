@@ -51,7 +51,9 @@ int main(int argc, char *argv[]) {
 		start.ru_stime.tv_sec * 1000000.0 - start.ru_stime.tv_usec) /
 		1000000.0;
 
-	double diffMemory = end.ru_maxrss;
+	double diffMemory = end.ru_maxrss - start.ru_maxrss;
+
+	if (diffMemory == 0.0) diffMemory = end.ru_maxrss;
 
 	#ifdef __APPLE__
 	diffMemory /= 1024.0;

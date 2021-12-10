@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 	system((basic + cmd).c_str());
 	system((efficient + cmd).c_str());
 
-	for (int generations = 1; generations <= 8; ++generations) {
+	for (int generations = 2; generations <= 12; ++generations) {
 		std::shuffle(strOne.begin(), strOne.end(), g);
 		std::shuffle(strTwo.begin(), strTwo.end(), g);
 

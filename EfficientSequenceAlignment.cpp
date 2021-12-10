@@ -42,7 +42,7 @@ EfficientSequenceAlignment::iteratorAlign(T strOneBegin, T strOneEnd, T strTwoBe
 std::pair<std::string, std::string>
 EfficientSequenceAlignment::sequence(std::string_view strOne, std::string_view strTwo) const {
 	if (strOne.size() <= 2 || strTwo.size() <= 2) {
-		SequenceAlignment sequenceAlignment(strOne, strTwo, gapSymbol, gapPenalty, mismatchPenalty);
+		const SequenceAlignment sequenceAlignment(strOne, strTwo, gapSymbol, gapPenalty, mismatchPenalty);
 		return sequenceAlignment.sequence();
 	}
 
