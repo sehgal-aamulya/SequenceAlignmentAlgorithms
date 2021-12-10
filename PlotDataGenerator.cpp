@@ -6,7 +6,6 @@
 #include <algorithm>
 #include <random>
 #include <array>
-#include <iostream>
 #include <fstream>
 
 int main(int argc, char *argv[]) {

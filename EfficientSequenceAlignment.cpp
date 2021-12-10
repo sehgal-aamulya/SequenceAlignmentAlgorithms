@@ -49,22 +49,25 @@ EfficientSequenceAlignment::sequence(std::string_view strOne, std::string_view s
 	const std::string_view leftStrOne = strOne.substr(0, strOne.size() / 2);
 	const std::string_view rightStrOne = strOne.substr(strOne.size() / 2);
 
-	const std::vector<size_t>
-		left = iteratorAlign(leftStrOne.cbegin(), leftStrOne.cend(), strTwo.cbegin(), strTwo.cend());
-	const std::vector<size_t>
-		right = iteratorAlign(rightStrOne.crbegin(), rightStrOne.crend(), strTwo.crbegin(), strTwo.crend());
+	size_t minIndex = SIZE_MAX;
+	{
+		const std::vector<size_t>
+			left = iteratorAlign(leftStrOne.cbegin(), leftStrOne.cend(), strTwo.cbegin(), strTwo.cend());
+		const std::vector<size_t>
+			right = iteratorAlign(rightStrOne.crbegin(), rightStrOne.crend(), strTwo.crbegin(), strTwo.crend());
 
-	auto leftIt = left.cbegin();
-	auto rightIt = right.crbegin();
-	size_t minValue = SIZE_MAX, minIndex = SIZE_MAX;
-	for (size_t i = 0; i < left.size(); ++i) {
-		const size_t value = *leftIt + *rightIt;
-		if (minValue > value) {
-			minValue = value;
-			minIndex = i;
+		auto leftIt = left.cbegin();
+		auto rightIt = right.crbegin();
+		size_t minValue = SIZE_MAX;
+		for (size_t i = 0; i < left.size(); ++i) {
+			const size_t value = *leftIt + *rightIt;
+			if (minValue > value) {
+				minValue = value;
+				minIndex = i;
+			}
+			++leftIt;
+			++rightIt;
 		}
-		++leftIt;
-		++rightIt;
 	}
 
 	const std::string_view leftStringTwo = strTwo.substr(0, minIndex);
