@@ -20,9 +20,6 @@ int main(int argc, char *argv[]) {
 	std::random_device rd;
 	std::mt19937 g(rd());
 
-	std::shuffle(strOne.begin(), strOne.end(), g);
-	std::shuffle(strTwo.begin(), strTwo.end(), g);
-
 	std::string stringOne{strOne};
 	std::string stringTwo{strTwo};
 
@@ -31,13 +28,9 @@ int main(int argc, char *argv[]) {
 	const std::string basic = "./BasicCSV";
 	const std::string efficient = "./EfficientCSV";
 
-	std::string cmd = " ";
-	cmd.append(stringOne).append(" ").append(stringTwo).append(" ").append(fileName);
+	std::string cmd{" "};
 
-	system((basic + cmd).c_str());
-	system((efficient + cmd).c_str());
-
-	for (int generations = 2; generations <= 12; ++generations) {
+	for (int generations = 1; generations <= 12; ++generations) {
 		std::shuffle(strOne.begin(), strOne.end(), g);
 		std::shuffle(strTwo.begin(), strTwo.end(), g);
 

@@ -29,8 +29,8 @@ int main(int argc, char *argv[]) {
 
 	const char gapSymbol = '_';
 
-	std::string stringOne = argv[1];
-	std::string stringTwo = argv[2];
+	const std::string stringOne = argv[1];
+	const std::string stringTwo = argv[2];
 
 	rusage start, end;
 

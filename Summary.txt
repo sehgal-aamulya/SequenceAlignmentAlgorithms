@@ -1,3 +1,5 @@
+
+
     Sequence Alignment Problem
 
 
@@ -5,9 +7,7 @@ Sequence Alignment Problem deals with the fundamental problem of quantifying the
 We model the similarity of two strings by determining the number of gaps and mismatches we incur when we line up the strings.
 The objective is to find the minimum "cost" alignment of two strings to quantify their similarity (or dissimilarity).
 
-Finding efficient solution to this problem becomes increasing important as we deal with extremely large strings,
-such as DNA and/or chromosome strings. Even though they have small alphabets (A,C,G,T), the strings can go upto
-3 billion in length. Such comparison is important to understand an organism's genome to determine its properties.
+Finding efficient solution to this problem becomes increasing important as we deal with extremely large strings, such as DNA and/or chromosome strings. Even though they have small alphabets (A,C,G,T), the strings can go upto 3 billion. Such comparison is important to understand an organism's genome to determine its properties.
 
 Hence, solution to these problems have wide-ranging uses from use in spell checkers to computational biology.
 
@@ -24,13 +24,11 @@ OPT(i,j) = min[mismatch(xi, yj) + OPT(i - 1, j - 1), gapPenalty + OPT(i - 1, j),
 where xi, yj are characters in the two strings (let's say) X and Y,
 and OPT is the minimum cost of an alignment between x1x2...xi and y1y2...yj
 
-This yields us an overall time complexity of O(mn), as the finding mismatch and deciding between mismatch and gapPenalty
-is O(1) and we have to make O(mn) iterations.
+This yields us an overall time complexity of O(mn), as the finding mismatch and deciding between mismatch and gapPenalty is O(1) and we have to make O(mn) iterations.
 
 We store the result in a 2D array of size O(mn) as to get back the optimal alignment at the end of finding the cost.
 
-We can reduce the space complexity by using 1D array and have size O(m + n) but we would not be able get the optimal
-alignment.
+We can reduce the space complexity by using 1D array and have size O(m + n) but we would not be able to get the optimal alignment.
 
 The second algorithm that has been used, termed as the efficient algorithm, is hybrid algorithm that uses
 divide and conquer and dynamic programming.
@@ -38,8 +36,7 @@ divide and conquer and dynamic programming.
 It uses the dynamic programming space efficient solution to get the cost as well as the alignment.
 
 The crux of the algorithm is to find in each iteration a partition point such that the shortest alignment
-(corner to corner path) must include it. As we keep on dividing the problem, we are able to reuse the memory from one
-call to the next.
+(corner to corner path) must include it. As we keep on dividing the problem, we are able to reuse the memory from one call to the next.
 
 This yields a space complexity of O(m + n).
 
@@ -54,6 +51,10 @@ The space required by the efficient algorithm would be 3B integers.
 
 That is a huge savings in space with at most 2x runtime cost.
 
-On average, the efficient version has runtime is 2x slower than the basic version, but uses 7x less space than
-the basic version (excluding certain datasets which use not all alphabets).
-The trend of the 2x runtime and large space savings can be seen in increasing string lengths with ACGT characters.
+On average with no compiler optimization, the efficient version has runtime which is 2.3x slower than the basic version, but uses 365x less space than the basic version.
+
+The trend of the <= 2x slower runtime and large space savings can be seen in increasing string lengths with ACGT characters.
+
+Interestingly, when using compiler optimization, the efficient version has runtime which is 1.05x slower than the basic version, and uses 563x less space than the basic version.
+
+Analysis is need to know why such gains can be achieved by just turning on compiler optimizations.

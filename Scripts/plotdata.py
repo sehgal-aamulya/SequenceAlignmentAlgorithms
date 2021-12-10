@@ -43,7 +43,7 @@ if __name__ == "__main__":
         f"Algorithm"
     )
 
-    fig, axs = plt.subplots(2, figsize=(14, 10))
+    fig, axs = plt.subplots(4, figsize=(14, 20))
     fig.suptitle("Sequence Alignment")
 
     axs[0].plot(basic_ps, basic_ct, marker="o", label="Basic")
@@ -60,11 +60,31 @@ if __name__ == "__main__":
     axs[1].set_xlabel("Problem Size")
     axs[1].set_ylabel("Memory Usage (in kilobytes)")
 
+    axs[2].plot(basic_ps, basic_ct, marker="o", label="Basic")
+    axs[2].plot(efficient_ps, efficient_ct, marker="o", label="Efficient")
+    axs[2].legend(loc="upper left")
+    axs[2].set_title("Problem Size Vs CPU Time - Logarithm")
+    axs[2].set_xlabel("Problem Size")
+    axs[2].set_ylabel("CPU Time (in seconds)")
+    axs[2].set_yscale("log")
+
+    axs[3].plot(basic_ps, basic_mu, marker="o", label="Basic")
+    axs[3].plot(efficient_ps, efficient_mu, marker="o", label="Efficient")
+    axs[3].legend(loc="upper left")
+    axs[3].set_title("Problem Size Vs Memory Usage - Logarithm")
+    axs[3].set_xlabel("Problem Size")
+    axs[3].set_ylabel("Memory Usage (in kilobytes)")
+    axs[3].set_yscale("log")
+
     fig.savefig("AllPlots.png")
 
     fig.savefig("CPUPlot.png",
                 bbox_inches=axs[0].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).expanded(1.2, 1.3))
     fig.savefig("MemoryPlot.png",
                 bbox_inches=axs[1].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).expanded(1.3, 1.3))
+    fig.savefig("CPUPlotLog.png",
+                bbox_inches=axs[2].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).expanded(1.2, 1.3))
+    fig.savefig("MemoryPlotLog.png",
+                bbox_inches=axs[3].get_window_extent().transformed(fig.dpi_scale_trans.inverted()).expanded(1.3, 1.3))
 
     plt.show()
