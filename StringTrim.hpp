@@ -7,6 +7,7 @@
 
 #include <string>
 #include <locale>
+#include <functional>
 
 bool isSpace(char ch);
 void trimLeft(std::string &str);

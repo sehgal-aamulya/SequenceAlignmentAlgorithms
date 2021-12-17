@@ -9,23 +9,12 @@ bool isSpace(char ch) {
 }
 
 void trimLeft(std::string &str) {
-	auto it = str.begin();
-	while (it != str.end()) {
-		if (!isSpace(*it)) break;
-		++it;
-	}
-	str.erase(str.begin(), it);
+	str.erase(std::begin(str), std::find_if(std::begin(str), std::end(str), std::not_fn(isSpace)));
 }
 
 void trimRight(std::string &str) {
-	auto it = str.end();
-	while (it != str.begin()) {
-		if (!isSpace(*(--it))) {
-			++it;
-			break;
-		}
-	}
-	str.erase(it, str.end());
+	str.erase(std::find_if(std::rbegin(str), std::rend(str), std::not_fn(isSpace))
+							.base(), std::end(str));
 }
 
 void trim(std::string &str) {
