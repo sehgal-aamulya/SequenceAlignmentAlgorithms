@@ -6,9 +6,9 @@
 #define CSCI570FINALPROJECT_NUCLEOTIDEBASES_HPP
 
 enum NucleotideBases {
-	A, C, G, T,
-	// never
-	none
+  A, C, G, T,
+  // never
+  none
 };
 
 NucleotideBases fromCharacter(char alphabet);
